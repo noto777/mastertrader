@@ -1,0 +1,112 @@
+Finalized System Requirements:
+Environment Setup:
+Web Framework: Flask or FastAPI (both are lightweight, scalable, and integrate well with APIs).
+IB API: Use ib_insync for Interactive Brokers integration.
+Charting: Use Plotly for interactive visualizations on the web front end.
+Backtesting:
+Use pre-downloaded historical data for backtesting.
+Framework: Backtrader is a strong choice as it supports modular strategies, custom indicators (like RSI), and is well-documented.
+Web Front End:
+Dashboard:
+Real-time updates using WebSocket.
+Include key metrics: portfolio allocation, P&L, RSI signals, and current trades.
+Display interactive charts for stock prices, RSI, and portfolio performance.
+Features:
+Live monitoring of the bot’s actions.
+Controls for pausing/resuming the bot and changing key parameters (e.g., RSI thresholds, bankroll percentage).
+Historical performance reports and backtest results.
+Logging and Reporting:
+Logs stored in local files and a database (SQLite for simplicity, PostgreSQL for scaling later).
+Email alerts for key events:
+RSI signal detected.
+Orders executed or canceled.
+Weekly rebalancing triggered.
+Core Trading Logic:
+Core Building (5%):
+
+Buy 1% of the bankroll when 15-min 7-period RSI crosses above 30.
+Sell ¾ of the position when 1% profit is achieved.
+Repeat up to 20 times for each stock to reach the 5% target.
+Use limit orders at the bid price; cancel and resubmit after 1 minute if unfilled.
+Operate in all trading sessions (premarket, RTH, after-hours).
+Trading Around the Core:
+
+Buy 1% of the bankroll when conditions match.
+Sell all shares at 1% profit.
+Reduce the cost basis of the core position over time.
+Core Position Exit:
+
+Start selling the core when weekly 7-period RSI crosses above 75.
+Sell 1% of the core position at a time as the price rises.
+Ensure no stock exceeds 10% of the bankroll; stop buying and only sell to reduce exposure.
+Weekly Rebalancing:
+
+Adjust positions that exceed the 5%/10% thresholds.
+Execution Behavior:
+Buy Orders: Use limit orders at the bid price. Cancel after 1 minute and retry.
+Sell Orders: Use limit orders as well to ensure precise execution.
+Operate in all trading sessions (premarket, RTH, after-hours).
+Backtesting Features:
+Use historical data to simulate trades based on your logic.
+Generate metrics like profit, drawdown, cost basis reduction, and P&L trends.
+Proposed Modular Architecture:
+Market Data Module:
+
+Fetch live data from Interactive Brokers via ib_insync.
+Fetch historical data for backtesting.
+Signal Generation Module:
+
+Calculate 7-period RSI (15-min and weekly).
+Generate buy/sell signals based on RSI thresholds.
+Order Execution Module:
+
+Manage buy/sell orders (limit orders with retries).
+Track open orders and lot-specific executions.
+Portfolio Management Module:
+
+Track portfolio allocation (core and trading positions).
+Enforce 5% and 10% limits.
+Weekly rebalancing logic.
+Logging and Reporting Module:
+
+Save logs locally and in the database.
+Generate reports for trades, portfolio performance, and P&L.
+Web Front End Module:
+
+Real-time dashboard with WebSocket for updates.
+Plotly charts for stock prices, RSI, and performance.
+Controls for bot operation and parameter tuning.
+Backtesting Module:
+
+Load historical data for given stocks.
+Simulate trades and evaluate strategy performance.
+Next Steps:
+Set Up the Environment:
+Install Python libraries (ib_insync, Flask/FastAPI, Plotly, Backtrader, SQLAlchemy, etc.).
+Start with a Skeleton Code:
+Begin with basic modules (e.g., fetching live data and calculating RSI).
+Iterative Development:
+Build modules incrementally, test thoroughly, and integrate as needed.
+Do you want me to start drafting the first piece of code, like fetching RSI signals or setting up the order execution logic?
+
+
+
+
+
+
+
+
+
+Would you like me to:
+Show you a proposed database schema for tracking lots?
+Start with the IB API integration for lot management?
+Begin with the order management system?
+Also, should we track:
+1. Individual lot performance metrics?
+Cumulative cost basis reduction from trading lots?
+Progress toward the 5% core target per symbol?
+
+
+
+
+ChatGPT can make mistakes. Check important info.

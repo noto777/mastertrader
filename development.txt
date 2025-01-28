@@ -1,0 +1,326 @@
+MASTER TRADER SYSTEM DOCUMENTATION
+=================================
+
+1. PROJECT STRUCTURE
+-------------------
+master_trader/
+│
+├── add_new_tables.py          # Database schema updates
+├── app.py                     # Main application entry point
+├── download_data.py           # Historical data downloader
+├── main.py                    # Trading system main loop
+├── setup_database.py          # Initial database setup
+├── test_database.py          # Database unit tests
+├── test_error_logging.py      # Logging system tests
+├── test_order_manager.py      # Order management tests
+├── test_signal_generator.py   # Signal generation tests
+│
+├── config/                    # Configuration files
+│   ├── config.py             # System-wide settings
+│   └── __init__.py
+│
+├── core/                      # Core trading components
+│   ├── backtester.py         # Backtesting engine
+│   ├── backtrader_strategy.py # Strategy implementation
+│   ├── connection.py         # IB connection management
+│   ├── database.py          # Database operations
+│   ├── data_fetcher.py      # Market data retrieval
+│   ├── gap_detector.py      # Gap detection logic
+│   ├── order_manager.py     # Order handling
+│   ├── portfolio_manager.py  # Portfolio tracking
+│   ├── signal_generator.py  # Signal generation
+│   └── __init__.py
+│
+├── data/                     # Data storage
+│   └── trading.db           # SQLite database
+│
+├── frontend/                 # User interface
+│   ├── gradio_frontend.py   # Gradio web interface
+│   └── __init__.py
+│
+├── logs/                     # System logs
+│   ├── application.log      # General application logs
+│   └── trading_system.log   # Trading-specific logs
+│
+└── utils/                    # Utility functions
+    ├── email_alerts.py      # Email notification system
+    ├── logger.py           # Logging configuration
+    └── __init__.py
+
+2. TRADING STRATEGY
+------------------
+
+A. Entry Conditions:
+   - Based on 7-period RSI on 15-minute timeframe
+   - Enter when RSI crosses above 30
+   - Specific entry timing: At the open of the candle after a candle closes above 30, 
+     where the previous candle was <= 30
+   - Active during all sessions (pre-market, regular, after-hours)
+
+B. Exit Conditions:
+   - Primary exit: 1% profit target using limit orders
+   - Gap-up modification:
+     * Check first 15 minutes of pre-market only
+     * If gap detected: Sell at (current price - 0.1%) or at the bid (whichever is lower)
+     * Cancel and retry if not filled within 10 seconds
+
+C. Core Position Management:
+   1. Core Position Allocation:
+      - Defined in configuration file (e.g., AAPL 5%, TSLA 3%, TLT 2%)
+      - Building core positions:
+         * Buy 1% position size
+         * Sell 3/4 of position
+         * Results in 0.25% retained
+         * Repeat until target core % reached
+         * Example: 5% core requires 20 trades (20 * 0.25% = 5%)
+
+   2. Trading Around Core:
+      - Same entry/exit rules but sell 100% of position
+      - Position limits:
+         * Never exceed core% + 5% in any stock
+         * Maintain minimum 20% cash position
+         * Maximum 80% total invested
+
+D. Core Position Reduction (Triggers):
+   1. Weekly RSI:
+      - Check at weekly candle close only
+      - Begin unwinding when Weekly RSI > 70
+      - Sell core in 5% increments
+      - Sell lowest-cost-basis shares first
+
+   2. Price Levels:
+      - Unwind if stock makes:
+         * 52-week high
+         * All-time high
+
+E. Core Position Reacquisition:
+   - Weekly RSI must drop below 70 (check at weekly close)
+   - Daily RSI must be below 30
+   - Then can begin rebuilding core position
+
+F. Lot Management:
+   - Track and manage positions on per-lot basis
+   - Use IB's specific lot/tax optimizer controls
+   - Track total cost basis across all shares (core + trading)
+   - Example:
+     * Lot 1: 100 shares @ $100 → sell @ $101
+     * Lot 2: 100 shares @ $98 → sell @ $98.98
+     * Must maintain separate profit targets for each lot
+
+G. Risk Management:
+   - Maximum position size: core% + 5%
+   - Minimum cash position: 20%
+   - Maximum invested: 80%
+
+
+RISK MANAGEMENT AND POSITION STATES
+---------------------------------
+
+A. Risk States:
+   1. Risk-Off (No Trading):
+      Triggered by ANY of:
+      - Weekly RSI closes above 70
+      - Stock makes 52-week high
+      - Stock makes all-time high
+      Actions:
+      - Stop new trades
+      - Begin unwinding core position:
+        * Sell 5% of core position
+        * For every 2% price increase, sell another 5%
+        * Always sell lowest-cost-basis shares first
+
+   2. Risk-On (Full Trading):
+      Requires ALL of:
+      - Weekly RSI has closed below 70
+      - Daily RSI has closed below 30
+      Actions:
+      - First: Rebuild core position (0.25% at a time)
+      - Then: Resume trading around core
+
+B. Position Priority:
+   1. Core Position Building (Priority 1):
+      - Buy 1% position → sell 75% → retain 0.25%
+      - Repeat until core target % reached
+      - Example: 5% core = 20 cycles
+
+   2. Trading Around Core (Priority 2):
+      - Only after core position established
+      - Same entry rules but 100% position exits
+      - Never exceed core% + 5% total position
+
+
+3. CORE COMPONENTS
+-----------------
+
+A. Signal Generator (signal_generator.py)
+- Calculates RSI indicators
+- Detects price gaps
+- Generates trading signals
+- Integrates with database for signal storage
+
+B. Database System (database.py)
+Tables:
+1. Signals:
+   - symbol: Stock symbol
+   - signal_type: BUY/SELL
+   - rsi_value: Current RSI
+   - signal_strength: Signal confidence
+   - gap_percent: Associated gap size
+   - timestamp: Signal generation time
+
+2. Gaps:
+   - symbol: Stock symbol
+   - gap_percent: Gap size
+   - previous_close: Prior close price
+   - current_open: Current open price
+   - gap_type: UP/DOWN/NONE
+   - timestamp: Detection time
+
+C. Order Manager (order_manager.py)
+- Handles order creation and execution
+- Manages position sizing
+- Implements risk management rules
+- Interfaces with Interactive Brokers
+
+4. DATA FLOW
+------------
+1. Market Data Pipeline:
+   IB/yfinance → data_fetcher.py → signal_generator.py → database.py
+
+2. Trading Pipeline:
+   signal_generator.py → order_manager.py → portfolio_manager.py → IB
+
+3. Monitoring Pipeline:
+   logger.py → log files → email_alerts.py → user notification
+
+5. CONFIGURATION
+---------------
+Key parameters in config.py:
+
+Trading Parameters:
+RSI_PERIOD = 14
+RSI_OVERSOLD = 30
+RSI_OVERBOUGHT = 70
+BAR_SIZE = '1 hour'
+
+Connection Settings:
+IB_HOST = '127.0.0.1'
+IB_PORT = 7497
+IB_CLIENT_ID = 1
+
+Database:
+DB_PATH = 'data/trading.db'
+
+6. TESTING FRAMEWORK
+-------------------
+test_signal_generator.py:
+- Tests RSI calculations
+- Validates gap detection
+- Verifies signal generation
+- Tests database operations
+
+test_order_manager.py:
+- Tests order creation
+- Validates position sizing
+- Verifies risk management
+
+test_database.py:
+- Tests data operations
+- Validates schema
+- Tests error handling
+
+7. LOGGING SYSTEM
+----------------
+Two main log files:
+
+trading_system.log:
+- Trading signals
+- Order execution
+- Position updates
+
+application.log:
+- System status
+- Error tracking
+- Performance metrics
+
+8. SETUP INSTRUCTIONS
+--------------------
+1. Install Dependencies:
+   pip install ib_insync pandas numpy sqlalchemy yfinance gradio
+
+2. Configure IB Connection:
+   - Start TWS or IB Gateway
+   - Set API port in config.py
+   - Configure client ID
+
+3. Initialize Database:
+   python setup_database.py
+
+4. Run Tests:
+   python test_signal_generator.py
+
+9. TROUBLESHOOTING
+-----------------
+Common Issues:
+
+1. IB Connection:
+   - Verify TWS/Gateway is running
+   - Check port settings
+   - Confirm client ID is unique
+
+2. Data Issues:
+   - Check internet connection
+   - Verify market hours
+   - Confirm symbol validity
+
+3. Database Issues:
+   - Check file permissions
+   - Verify database path
+   - Monitor disk space
+
+10. FUTURE ENHANCEMENTS
+----------------------
+1. Strategy Improvements:
+   - Additional technical indicators
+   - Machine learning integration
+   - Real-time news analysis
+
+2. System Upgrades:
+   - Multi-account support
+   - Advanced risk management
+   - Performance optimization
+
+3. UI Enhancements:
+   - Mobile interface
+   - Real-time charts
+   - Advanced analytics
+
+11. VERSION HISTORY
+------------------
+v0.1: Initial system setup
+v0.2: Added gap detection
+v0.3: Implemented backtesting
+v0.4: Added Gradio frontend
+v0.5: Enhanced signal generation
+
+12. MAINTENANCE
+--------------
+Daily Operations:
+1. Log Rotation
+2. Database Backups
+3. Performance Monitoring
+4. Signal Quality Analysis
+
+System Health Checks:
+1. Connection Status
+2. Database Performance
+3. Memory Usage
+4. Error Rates
+
+13. CONTACT
+-----------
+System Maintainer: [Your Contact]
+Repository: [Repository URL]
+Documentation: [Documentation URL]
+
+END OF DOCUMENTATION

@@ -1,0 +1,152 @@
+AUTOMATED TRADING SYSTEM STRATEGY
+===============================
+
+1. CORE STRATEGY COMPONENTS
+--------------------------
+A. Signal Generation (15-minute timeframe):
+   - RSI Parameters:
+     * Period: 7
+     * Entry: Cross above 30
+     * Entry Timing: Open of candle after a close above 30 (previous candle ≤ 30)
+     * Profit Target: 1% using limit orders
+
+B. Gap Detection:
+   - Check first 15 minutes of pre-market
+   - If gap up detected:
+     * Cancel existing limit sell orders
+     * Place new limit sell at (current price - 0.1%) or bid (whichever is lower)
+     * If not filled in 10 seconds, cancel and retry
+
+2. POSITION MANAGEMENT
+---------------------
+A. Core Positions:
+   - Defined in configuration (e.g., AAPL 5%, TSLA 3%, TLT 2%)
+   - Building Process:
+     * Buy position = 1% of total account value
+     * Sell 75% of position
+     * Retain 0.25% as core
+     * Repeat until target core % reached
+     Example: 5% core target requires 20 cycles (20 * 0.25% = 5%)
+
+B. Trading Positions:
+   - Trade around core using same entry/exit rules
+   - Sell 100% of trading positions at targets
+   - Position Limits:
+     * Maximum per stock: core% + 5%
+     * Minimum cash: 20% of account
+     * Maximum invested: 80% of account
+
+3. RISK MANAGEMENT STATES
+------------------------
+A. Risk-Off Triggers (ANY of):
+   - Weekly RSI closes above 70
+   - Stock makes 52-week high
+   - Stock makes all-time high
+   
+   Actions:
+   - Stop new trades
+   - Unwind core position:
+     * Initial 5% sale
+     * Additional 5% sale for every 2% price increase
+     * Always sell lowest-cost-basis lots first
+
+B. Risk-On Requirements (ALL required):
+   - Weekly RSI must close below 70
+   - Daily RSI must close below 30
+   
+   Actions:
+   1. First Priority: Rebuild core position
+      - Use 1% buy → 75% sell → 0.25% retain process
+      - Complete core position before trading
+   2. Second Priority: Resume trading around core
+
+4. LOT MANAGEMENT
+----------------
+A. Position Tracking:
+   - Track each lot separately
+   - Use IB's specific lot/tax optimizer
+   - Maintain individual profit targets per lot
+   Example:
+   - Lot 1: 100 shares @ $100 → sell @ $101
+   - Lot 2: 100 shares @ $98 → sell @ $98.98
+
+B. Cost Basis:
+   - Track total cost basis across all shares
+   - Include both core and trading positions
+   - Use for tax optimization in sales
+
+5. TRADING SESSIONS
+------------------
+- Active in all sessions:
+  * Pre-market
+  * Regular market
+  * After-hours
+- Gap checks in first 15 min of pre-market only
+
+6. RISK LIMITS
+-------------
+A. Position Limits:
+   - Per stock: Never exceed core% + 5%
+   - Account-wide: Minimum 20% cash
+   - Total invested: Maximum 80%
+
+B. Lot Management:
+   - Individual profit targets
+   - Tax-optimized lot selection
+   - Cost basis tracking
+
+7. MONITORING REQUIREMENTS
+-------------------------
+A. Price Monitoring:
+   - 52-week highs
+   - All-time highs
+   - Gap detection in pre-market
+
+B. Technical Indicators:
+   - Weekly RSI (for risk state)
+   - Daily RSI (for risk state)
+   - 7-period 15-min RSI (for entries)
+
+C. Position Tracking:
+   - Core position size vs target
+   - Total position exposure
+   - Cash levels
+   - Individual lot details
+
+8. ORDER MANAGEMENT
+------------------
+A. Entry Orders:
+   - Market orders for entries
+   - Size based on 1% account value
+
+B. Exit Orders:
+   - Regular: 1% profit limit orders
+   - Gap scenarios: 0.1% below current price/bid
+   - Core unwinding: Market or limit based on conditions
+
+9. IMPLEMENTATION PRIORITIES
+---------------------------
+1. Risk State Monitoring
+2. Core Position Management
+3. RSI Signal Generation
+4. Lot-Specific Order Management
+5. Gap Detection and Handling
+6. Position Size Tracking
+7. Tax-Optimized Lot Selection
+
+10. CONFIGURATION REQUIREMENTS
+----------------------------
+A. Strategy Parameters:
+   - RSI periods and thresholds
+   - Profit targets
+   - Gap thresholds
+
+B. Position Management:
+   - Core position targets per symbol
+   - Maximum position sizes
+   - Cash requirements
+
+C. Risk Management:
+   - RSI thresholds for risk states
+   - Position unwinding increments
+   - Price increase thresholds 

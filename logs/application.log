@@ -1,0 +1,244 @@
+2025-01-26 15:05:22,921 - __main__ - INFO - Starting database setup...
+2025-01-26 15:05:22,935 - core.database - INFO - Initialized account value to $100,000.00
+2025-01-26 15:05:22,943 - core.database - INFO - Database setup completed successfully
+2025-01-26 15:05:22,944 - __main__ - INFO - Database setup completed.
+2025-01-26 16:17:06,686 - core.database - INFO - Database setup completed successfully
+2025-01-26 16:33:20,081 - core.database - INFO - Database setup completed successfully
+2025-01-26 16:33:20,082 - __main__ - INFO - Created signals table
+2025-01-26 16:33:20,083 - __main__ - INFO - Created gaps table
+2025-01-26 16:33:20,084 - __main__ - INFO - Created settings table
+2025-01-26 16:33:20,085 - __main__ - INFO - Created errors table
+2025-01-26 16:33:20,086 - __main__ - INFO - Created indexes for new tables
+2025-01-26 16:33:20,091 - __main__ - INFO - Inserted default settings
+2025-01-26 16:33:20,100 - __main__ - INFO - Successfully added new tables and default settings
+2025-01-26 16:43:26,596 - core.database - INFO - Database setup completed successfully
+2025-01-26 16:43:26,599 - __main__ - INFO - Test 1: Logging a simple error
+2025-01-26 16:43:26,612 - core.database - ERROR - Logged error: TEST_ERROR - This is a test error
+2025-01-26 16:43:26,613 - __main__ - INFO - Test 2: Logging error with stack trace
+2025-01-26 16:43:26,628 - core.database - ERROR - Logged error: DIVISION_ERROR - division by zero
+2025-01-26 16:43:26,629 - __main__ - INFO - Test 3: Retrieving recent errors
+2025-01-26 16:43:26,633 - __main__ - INFO - Test 4: Clearing old errors
+2025-01-26 16:43:26,635 - core.database - INFO - Cleared errors older than 7 days
+2025-01-26 16:43:26,636 - __main__ - INFO - Test 5: Verifying error count
+2025-01-26 16:55:55,607 - core.database - INFO - Database setup completed successfully
+2025-01-26 16:55:55,610 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 16:55:55,611 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 16:55:55,618 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 16:55:55,620 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 16:55:55,621 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 16:55:55,634 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - 'NoneType' object has no attribute 'empty'
+2025-01-26 16:59:57,994 - core.database - INFO - Database setup completed successfully
+2025-01-26 16:59:57,995 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 16:59:58,015 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 16:59:58,037 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 16:59:58,051 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 16:59:58,054 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 16:59:58,059 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 16:59:58,061 - __main__ - ERROR - Error during testing: unsupported format string passed to bytes.__format__
+2025-01-26 17:00:54,505 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:00:54,507 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:00:54,515 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:00:54,535 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:00:54,550 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:00:54,553 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:00:54,557 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:00:54,559 - __main__ - ERROR - Error during testing: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:03:04,282 - core.database - INFO - Initialized account value to $100,000.00
+2025-01-26 17:03:04,296 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:03:04,298 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:03:04,309 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:03:04,327 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:03:04,341 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:03:04,344 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:03:04,348 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:03:04,351 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:03:04,353 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:03:04,367 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - 'NoneType' object has no attribute 'empty'
+2025-01-26 17:03:29,323 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:03:29,324 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:03:29,333 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:03:29,355 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:03:29,371 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:03:29,373 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:03:29,376 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:03:29,378 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:03:29,379 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:03:29,380 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:03:29,394 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - 'NoneType' object has no attribute 'empty'
+2025-01-26 17:09:10,812 - core.database - INFO - Created gaps table
+2025-01-26 17:09:10,818 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:09:10,820 - __main__ - INFO - Created signals table
+2025-01-26 17:09:10,821 - __main__ - INFO - Created gaps table
+2025-01-26 17:09:10,822 - __main__ - INFO - Created settings table
+2025-01-26 17:09:10,822 - __main__ - INFO - Created errors table
+2025-01-26 17:09:10,823 - __main__ - INFO - Created indexes for new tables
+2025-01-26 17:09:10,828 - __main__ - INFO - Inserted default settings
+2025-01-26 17:09:10,838 - __main__ - INFO - Successfully added new tables and default settings
+2025-01-26 17:09:36,918 - core.database - INFO - Created gaps table
+2025-01-26 17:09:36,920 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:09:36,921 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:09:36,930 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:09:36,954 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:09:36,968 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:09:36,970 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:09:36,975 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:09:36,977 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:09:36,979 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:09:36,981 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:09:36,982 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:09:36,999 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - 'NoneType' object has no attribute 'empty'
+2025-01-26 17:10:28,584 - __main__ - INFO - Starting database setup...
+2025-01-26 17:10:28,633 - core.database - INFO - Initialized account value to $100,000.00
+2025-01-26 17:10:28,635 - core.database - INFO - Created gaps table
+2025-01-26 17:10:28,648 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:10:28,649 - __main__ - INFO - Database setup completed.
+2025-01-26 17:10:35,258 - core.database - INFO - Created gaps table
+2025-01-26 17:10:35,260 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:10:35,261 - __main__ - INFO - Created signals table
+2025-01-26 17:10:35,262 - __main__ - INFO - Created gaps table
+2025-01-26 17:10:35,263 - __main__ - INFO - Created settings table
+2025-01-26 17:10:35,264 - __main__ - INFO - Created errors table
+2025-01-26 17:10:35,265 - __main__ - INFO - Created indexes for new tables
+2025-01-26 17:10:35,271 - __main__ - INFO - Inserted default settings
+2025-01-26 17:10:35,282 - __main__ - INFO - Successfully added new tables and default settings
+2025-01-26 17:10:42,160 - core.database - INFO - Created gaps table
+2025-01-26 17:10:42,165 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:10:42,167 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:10:42,177 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:10:42,194 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:10:42,242 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:10:42,243 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:10:42,246 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:10:42,252 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:10:42,254 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:10:42,268 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:19:48,133 - core.database - INFO - Created gaps table
+2025-01-26 17:19:48,136 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:19:48,138 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:19:48,147 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:19:48,165 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:19:48,166 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'numpy.float64'>, pre_gap_price: <class 'numpy.int64'>, post_gap_price: <class 'numpy.float64'>, gap_type: <class 'str'>
+2025-01-26 17:19:48,180 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:19:48,183 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:19:48,186 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:19:48,188 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:19:48,189 - __main__ - ERROR - Error formatting gap data: could not convert string to float: b'g\x00\x00\x00\x00\x00\x00\x00'
+2025-01-26 17:19:48,190 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:19:48,204 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:20:18,793 - core.database - INFO - Created gaps table
+2025-01-26 17:20:18,794 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:20:18,796 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:20:18,805 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:20:18,820 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:20:18,821 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'numpy.float64'>, pre_gap_price: <class 'numpy.int64'>, post_gap_price: <class 'numpy.float64'>, gap_type: <class 'str'>
+2025-01-26 17:20:18,836 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:20:18,838 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:20:18,842 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:20:18,847 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:20:18,859 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:24:02,555 - core.database - INFO - Created gaps table
+2025-01-26 17:24:02,561 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:24:02,563 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:24:02,571 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:24:02,589 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:24:02,590 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'float'>, pre_gap_price: <class 'float'>, post_gap_price: <class 'float'>, gap_type: <class 'str'>
+2025-01-26 17:24:02,605 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:24:02,607 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:24:02,612 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:24:02,616 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:24:02,628 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:28:55,162 - core.database - INFO - Created gaps table
+2025-01-26 17:28:55,164 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:28:55,165 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:28:55,174 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:28:55,193 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:28:55,195 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'float'>, pre_gap_price: <class 'float'>, post_gap_price: <class 'float'>, gap_type: <class 'str'>
+2025-01-26 17:28:55,211 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:28:55,214 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:28:55,220 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:28:55,220 - __main__ - ERROR - Error during testing: name 'recent_gaps' is not defined
+2025-01-26 17:30:19,674 - core.database - INFO - Created gaps table
+2025-01-26 17:30:19,680 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:30:19,682 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:30:19,691 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:30:19,709 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:30:19,710 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'float'>, pre_gap_price: <class 'float'>, post_gap_price: <class 'float'>, gap_type: <class 'str'>
+2025-01-26 17:30:19,724 - core.database - INFO - Recorded DOWN gap of -2.912621359223301% for TEST
+2025-01-26 17:30:19,727 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:30:19,735 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:30:19,744 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:30:19,760 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:36:06,347 - core.database - INFO - Created gaps table
+2025-01-26 17:36:06,349 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:36:06,351 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:36:06,359 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:36:06,377 - core.database - INFO - Recorded BUY signal for TEST
+2025-01-26 17:36:06,379 - core.database - DEBUG - Recording gap with types - symbol: <class 'str'>, gap_percent: <class 'float'>, pre_gap_price: <class 'float'>, post_gap_price: <class 'float'>, gap_type: <class 'str'>
+2025-01-26 17:36:06,396 - core.database - INFO - Recorded DOWN gap of -6.92849894812327% for TEST
+2025-01-26 17:36:06,399 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:36:06,408 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:36:06,417 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:36:06,435 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:38:19,928 - core.database - INFO - Initialized account value to $100,000.00
+2025-01-26 17:38:19,931 - core.database - INFO - Created signals table
+2025-01-26 17:38:19,931 - core.database - INFO - Created gaps table
+2025-01-26 17:38:19,932 - core.database - INFO - Created errors table
+2025-01-26 17:38:19,944 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:38:19,945 - __main__ - INFO - Test 1: Generating sample data
+2025-01-26 17:38:19,953 - __main__ - INFO - Test 2: Generating signals
+2025-01-26 17:38:19,970 - core.database - INFO - Recorded SELL signal for TEST
+2025-01-26 17:38:19,971 - core.database - DEBUG - Recording gap - symbol: TEST, gap_percent: 7.77502469457544 (<class 'float'>), pre_gap_price: 95.85656472595247 (<class 'float'>), post_gap_price: 103.30943630476696 (<class 'float'>), gap_type: UP
+2025-01-26 17:38:19,984 - core.database - INFO - Recorded UP gap of 7.77502469457544% for TEST
+2025-01-26 17:38:19,986 - __main__ - INFO - Test 3: Retrieving recent signals
+2025-01-26 17:38:19,989 - __main__ - INFO - Test 4: Retrieving recent gaps
+2025-01-26 17:38:19,991 - __main__ - INFO - Test 5: Checking error logging
+2025-01-26 17:38:20,005 - core.database - ERROR - Logged error: SIGNAL_GENERATION_ERROR - Empty or None data received for TEST
+2025-01-26 17:47:31,301 - core.database - INFO - Created signals table
+2025-01-26 17:47:31,306 - core.database - INFO - Created gaps table
+2025-01-26 17:47:31,307 - core.database - INFO - Created errors table
+2025-01-26 17:47:31,318 - core.database - INFO - Created orders table
+2025-01-26 17:47:31,319 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:47:31,320 - __main__ - ERROR - Error during testing: OrderManager.__init__() missing 1 required positional argument: 'database'
+2025-01-26 17:47:41,095 - __main__ - INFO - Starting database setup...
+2025-01-26 17:47:41,097 - core.database - INFO - Created signals table
+2025-01-26 17:47:41,098 - core.database - INFO - Created gaps table
+2025-01-26 17:47:41,099 - core.database - INFO - Created errors table
+2025-01-26 17:47:41,099 - core.database - INFO - Created orders table
+2025-01-26 17:47:41,100 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:47:41,101 - __main__ - INFO - Database setup completed.
+2025-01-26 17:47:47,574 - core.database - INFO - Created signals table
+2025-01-26 17:47:47,575 - core.database - INFO - Created gaps table
+2025-01-26 17:47:47,576 - core.database - INFO - Created errors table
+2025-01-26 17:47:47,577 - core.database - INFO - Created orders table
+2025-01-26 17:47:47,578 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:47:47,579 - __main__ - ERROR - Error during testing: OrderManager.__init__() missing 1 required positional argument: 'database'
+2025-01-26 17:48:54,477 - core.database - INFO - Created signals table
+2025-01-26 17:48:54,484 - core.database - INFO - Created gaps table
+2025-01-26 17:48:54,485 - core.database - INFO - Created errors table
+2025-01-26 17:48:54,486 - core.database - INFO - Created orders table
+2025-01-26 17:48:54,487 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:48:54,488 - __main__ - ERROR - Error during testing: OrderManager.__init__() missing 1 required positional argument: 'db'
+2025-01-26 17:49:46,542 - core.database - INFO - Created signals table
+2025-01-26 17:49:46,543 - core.database - INFO - Created gaps table
+2025-01-26 17:49:46,544 - core.database - INFO - Created errors table
+2025-01-26 17:49:46,545 - core.database - INFO - Created orders table
+2025-01-26 17:49:46,546 - core.database - INFO - Database setup completed successfully
+2025-01-26 17:49:46,548 - __main__ - INFO - Test 1: Placing new order
+2025-01-26 17:49:46,562 - core.order_manager - INFO - Placed BUY order for 100 AAPL @ 150.5
+2025-01-26 17:49:46,564 - __main__ - INFO - Test 2: Getting order status
+2025-01-26 17:49:46,567 - __main__ - INFO - Test 3: Modifying order
+2025-01-26 17:49:46,577 - core.order_manager - INFO - Modified order 1
+2025-01-26 17:49:46,579 - __main__ - INFO - Test 4: Placing second order
+2025-01-26 17:49:46,590 - core.order_manager - INFO - Placed SELL order for 50 TSLA @ 250.75
+2025-01-26 17:49:46,591 - __main__ - INFO - Test 5: Getting active orders
+2025-01-26 17:49:46,595 - __main__ - INFO - Test 6: Getting active orders for AAPL
+2025-01-26 17:49:46,597 - __main__ - INFO - Test 7: Cancelling order
+2025-01-26 17:49:46,607 - core.order_manager - INFO - Cancelled order 1
+2025-01-26 17:49:46,608 - __main__ - INFO - Test 8: Testing error handling - Invalid order type
+2025-01-26 17:49:46,609 - core.order_manager - ERROR - Error placing order: Invalid order type: INVALID
+2025-01-26 17:49:46,611 - __main__ - INFO - Test 9: Testing error handling - Invalid quantity
+2025-01-26 17:49:46,611 - core.order_manager - ERROR - Error placing order: Invalid quantity: -100
+2025-01-26 17:49:46,612 - __main__ - INFO - Test 10: Testing error handling - Invalid price
+2025-01-26 17:49:46,613 - core.order_manager - ERROR - Error placing order: Invalid price: -150.5
+2025-01-27 14:34:34,395 - core.database - INFO - Connected to database at data\trading.db
+2025-01-27 14:34:34,396 - __main__ - ERROR - Error adding new tables: 'Database' object has no attribute 'get_connection'

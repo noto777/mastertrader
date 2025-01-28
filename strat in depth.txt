@@ -1,0 +1,22 @@
+let me run through it again
+
+entry signal is based on the 7 period 15 minute RSI crossing above 30.  Should enter at the beginning of the candle after the previous candle closes above 30 the candle before that one was either <=30
+
+exit signal is 1% profit.  
+
+All trades should be tracked on a per lot basis using IBs specific lot or tax optimizer controls
+
+for example if I buy 100 shares of stock A at 100 then later another 100 shares of stock A at at 98.  I need to sell the $100 lot at $101 and the $98 lot at $98.98.  I cant sell the $100 lot at $98.98 and lose money.  
+
+The stocks I trade are part of my core investment strategy.  I should be able to define what those stocks./etfs are in a file and what percent of my total balance would be allocated to them as a core position.  So for example, AAPL - 5%, TSLA - 3%, TLT 2%, etc
+
+The way I allocate my core up to the specified percentage is I buy shares equal to 1% of my bankroll and then sell 3/4 to end up with a .25% position.  This would need to be repeated enough times to get to the core % that has been specified.  For example if my AAPL core was 5% then it would take 20 trades to get to 5% but if my GOOG core position was 2% it would take only 8 trades to get to 2%.   Once the core is allocated in stock, then we trade around the core.  This involves the same entry and exit strategy except were selling 100% of the shares.  This will overall cost basis which should be tracked along with everyting else.   should the market drop never allocate more than core% + 5% to any stock.  This will protect me from running out of cash.  Also the total invested should never exceed 80%.  Always have at least 20% cash on hand.  Once the weekly RSI crosses 70, stop tradining around the core and start selling the core postion in 5% share increments.  Since this is profit taking the lowest value shares should be sold first.  Every 2% the price rises after weekly RSI cross 75 sell the 5%.  Once the core position is gone, no more trading until the Weekly RSI crosses below 70 and the Daily RSI is below 30 then the core can begin to be reacquired.
+
+Normally when the shares are bought an immediate limit sell order should be placed at the 1% profit.  However, if there is a gap up premarket or after hours (earnings maybe) we should cancel whatever limit sells exist and replace those limit sell orders at .1% below the the current price or at the bid, whichever is lower. If it doesnt sell in 10 seconds, cancel and try again.
+
+any questions?
+
+  
+
+
+

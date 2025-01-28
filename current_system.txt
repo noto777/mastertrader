@@ -1,0 +1,42 @@
+master_trader/
+│
+├── add_new_tables.py
+├── app.py
+├── download_data.py
+├── main.py
+├── setup_database.py
+├── test_database.py
+├── test_error_logging.py
+├── test_order_manager.py
+├── test_signal_generator.py
+│
+├── config/
+│   ├── config.py
+│   └── __init__.py
+│
+├── core/
+│   ├── backtester.py
+│   ├── backtrader_strategy.py
+│   ├── connection.py
+│   ├── database.py
+│   ├── data_fetcher.py
+│   ├── order_manager.py
+│   ├── portfolio_manager.py
+│   ├── signal_generator.py
+│   └── __init__.py
+│
+├── data/
+│   └── trading.db
+│
+├── frontend/
+│   ├── gradio_frontend.py
+│   └── __init__.py
+│
+├── logs/
+│   ├── application.log
+│   └── trading_system.log
+│
+└── utils/
+    ├── email_alerts.py
+    ├── logger.py
+    └── __init__.py
